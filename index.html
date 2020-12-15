@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>Capacitación en R y herramientas de productividad</title>
+    <title>Capacitación en R</title>
     <meta charset="utf-8" />
     <meta name="author" content="" />
-    <meta name="date" content="2020-11-11" />
+    <meta name="date" content="2020-12-15" />
     <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
   </head>
   <body>
@@ -20,13 +20,11 @@ class: center, middle
 &lt;img src="imagenes/logo_portada2.png" width="200" /&gt;
 
 
-## Capacitación en R y herramientas de productividad
-
-## Proyecto Estratégico Servicios Compartidos para la Producción Estadística
+## Capacitación en R
 
 ## Procesamiento de bases de datos (3)
 
-### Noviembre 2020
+### Diciembre 2020
 
 
 
@@ -38,7 +36,7 @@ background-image: url("imagenes/fondo2.PNG")
 background-size: contain;
 background-position: 100% 0%
 
-# Sesión 3: Procesamiento de BBDD (3)
+# Sesión 4: Procesamiento de BBDD (3)
 
 --
 &lt;br/&gt;
@@ -123,23 +121,22 @@ La mayoría de las funciones para .pur[análisis] y .pur[transformación] de dat
 
 --
 
-`R` incluye en sus paquetes base una función multipropósito para unir datos llamada `merge()`.
+`R` incluye en sus paquetes base una función multipropósito para unir datos llamada `merge()`, además de `cbind()` y `rbind()`
 
 --
 
-.pur[Vamos a ignorar] `merge()` en esta ocasión y enfocarnos en algunas funciones de `dplyr` que .pur[tienen el mismo objetivo].
+.pur[Si bien no es lo ideal utilizar estas funciones, las revisaremos por su sencillez y por su carácter introductorio.]
+
+
+Posteriormente nos enfocaremos en algunas funciones de `dplyr` que tienen el mismo objetivo que `merge()`, `cbind()` y `rbind()`.
 
 --
 
-¿Por qué?
+Estos son los `joins` de `dplyr`, que ofrecen más control sobre el proceso, dado que existen distintas funciones para generar uniones *ad hoc* a nuestros requerimientos.
 
 --
 
-- Los `joins` de `dplyr` ofrecen más control sobre el proceso, dado que existen distintas funciones para generar uniones *ad hoc* a nuestros requerimientos.
-
---
-
-- Los `joins` mantienen el orden de las filas (no así necesariamente `merge()`)
+Además, los `joins` mantienen el orden de las filas (no así necesariamente `merge()`)
 
 ---
 
@@ -167,15 +164,22 @@ background-position: 100% 0%
 .medium-par[O esto...]
 
 ![](https://media0.giphy.com/media/P4TqKx6NHyLnO/giphy.gif?cid=3640f6095c91abd67a467174592b5512)
+
 ]
 
+
+---
+
+background-image: url("imagenes/fondo2.PNG")
+background-size: contain;
+background-position: 100% 0%
+
+# Unión de *data frames* con *r base*
+
 --
 
-Los `joins` son un set de funciones que son parte de `dplyr`.
 
---
 
-Y al igual que las funciones de `dplyr` que aprendimos previamente, comparten su .medium-par-red[gramática] y .medium-par-red[simpleza]. 
 
 ---
 
@@ -891,6 +895,13 @@ mi_cumple &lt;- as.Date("12-06-1985"); str(mi_cumple)
 
 ```r
 library(anytime)
+```
+
+```
+## Warning: package 'anytime' was built under R version 3.6.3
+```
+
+```r
 mi_cumple &lt;- as.Date(anydate("12-06-1985")); str(mi_cumple) 
 ```
 
@@ -933,7 +944,7 @@ Sys.Date() # La fecha de hoy
 ```
 
 ```
-## [1] "2020-11-11"
+## [1] "2020-12-15"
 ```
 
 ```r
@@ -941,7 +952,7 @@ Sys.time() # el momento exacto, con fecha, horas, minutos y segundos
 ```
 
 ```
-## [1] "2020-11-11 09:42:38 -03"
+## [1] "2020-12-15 13:16:01 -03"
 ```
 
 ---
@@ -961,11 +972,18 @@ background-position: 100% 0%
 
 ```r
 library(lubridate) # cargamos lubridate
+```
+
+```
+## Warning: package 'lubridate' was built under R version 3.6.3
+```
+
+```r
 today() 
 ```
 
 ```
-## [1] "2020-11-11"
+## [1] "2020-12-15"
 ```
 
 ```r
@@ -973,7 +991,7 @@ now()
 ```
 
 ```
-## [1] "2020-11-11 09:42:39 -03"
+## [1] "2020-12-15 13:16:01 -03"
 ```
 
 --
@@ -1101,6 +1119,13 @@ Para crear un objeto `date` que llamaremos `fecha_nac` usamos la función `make_
 ```r
 # cargamos la base
 library(readxl)
+```
+
+```
+## Warning: package 'readxl' was built under R version 3.6.3
+```
+
+```r
 library(lubridate)
 
 nac2017 &lt;- read_excel("data/nac_2017.xlsx")
@@ -1220,7 +1245,7 @@ month(mi_cumple, label = T) # con label se pide la etiqueta
 
 ```
 ## [1] jun
-## 12 Levels: ene &lt; feb &lt; mar &lt; abr &lt; may &lt; jun &lt; jul &lt; ago &lt; sep &lt; ... &lt; dic
+## 12 Levels: ene &lt; feb &lt; mar &lt; abr &lt; may &lt; jun &lt; jul &lt; ago &lt; sept &lt; ... &lt; dic
 ```
 
 --
@@ -1263,7 +1288,7 @@ today() - ymd("1985-06-12")
 ```
 
 ```
-## Time difference of 12936 days
+## Time difference of 12970 days
 ```
 
 --
@@ -1289,7 +1314,7 @@ today() + years(1) + months(1)
 ```
 
 ```
-## [1] "2021-12-11"
+## [1] "2022-01-15"
 ```
 
 ---
@@ -1565,7 +1590,7 @@ background-position: 100% 0%
 
 --
 
-En el archivo "nacimientos.rar" que se encuentra disponible en la carpeta **'data/tarea' en la sesion 4 de nuestro canal en Teams (Generación II)**, encontrarán las siguientes bases de datos:
+En el archivo "nacimientos.rar" que se encuentra disponible **[aquí](https://inechile-my.sharepoint.com/:u:/g/personal/nicolas_ratto_ine_cl/EeHIsLYPX7FGjXyLGV6tci8Blar-7Ol1WQ-qcm4ZgtKcEg?e=0jsmRt)**, encontrarán las siguientes bases de datos:
 
 --
 
@@ -1647,13 +1672,11 @@ class: center, middle
 &lt;img src="imagenes/logo_portada2.png" width="200" /&gt;
 
 
-## Capacitación en R y herramientas de productividad
-
-## Proyecto Estratégico Servicios Compartidos para la Producción Estadística
+## Capacitación en R
 
 ## Procesamiento de bases de datos (3)
 
-### Noviembre 2020
+### Diciembre 2020
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

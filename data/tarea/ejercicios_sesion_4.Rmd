@@ -1,0 +1,40 @@
+---
+title: "Ejercicios - Sesión 4"
+subtitle: "Capacitación en R"
+author: "Capacitadores R en DET, en base a PE SCPE"
+output: pdf_document
+header-includes:
+- \usepackage[fontsize=12pt]{scrextend}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = F, message = F)
+```
+
+## Pasos previos
+
+En primer lugar, deben descomprimir el archivo ["nacimientos.rar"](https://inechile-my.sharepoint.com/:u:/g/personal/nicolas_ratto_ine_cl/EeHIsLYPX7FGjXyLGV6tci8Blar-7Ol1WQ-qcm4ZgtKcEg?e=0jsmRt). Encontrarán los siguientes archivos Excel:
+
+- **nac2017_j1.xlsx**
+- **nac2017_j2.xlsx**
+- **nac2017_j3.xlsx**
+
+Estas bases de datos **fueron creadas a partir de la base de datos oficial de nacimientos del 2017**, pero no contienen todos los registros, para evitar que tengan problemas con el ejercicio quienes no cuenten con una buena memoria RAM en sus computadores.
+
+## Ejercicios
+
+### 1- En primer lugar, carguen estos 3 objetos en su entorno y explórelos. ¿Qué son y cómo se relacionan estos objetos?
+
+
+### 2- Genera en **nac2017_j2** y **nac2017_j3** las variables "fecha_nac", "fecha_ins" y "dif_days", tal como lo hiciste en el ejercio durante la clase.
+
+
+### 3- Ahora, une **nac2017_j1** con **nac2017_j2**, conservando todos los registros de **nac2017_j1** y solo las variables "fecha_nac", "fecha_ins" y "dif_days" de **nac2017_j2**, que acabas de crear.
+
+
+### 4- ¿Qué sucedió al unir nac2017_j1 con nac2017_j2? ¿Se unieron todos los registros? Si no lo hicieron, ¿por qué pasó eso?
+
+### 5- Ahora ensambla **nac2017_j2** y **nac2017_j3** y este nuevo objeto únelo con **nac2017_j1**, conservando solo "fecha_nac", "fecha_ins" y "dif_days" del objeto ensamblado.
+
+### 6- ¿Qué pasó ahora?
+

@@ -26,24 +26,13 @@ Estas bases de datos **fueron creadas a partir de la base de datos oficial de na
 Debemos cargas las 3 bases de datos en nuestro entorno de trabajo. Dado que las bases están en formato Excel, debemos usar la librería `readxl`.
 Podemos setear una ruta con `setwd()` para ahorrar código y evitar errores al escribir las rutas.
 
-```{r, eval=F}
-setwd("C:/Users/Trabajo/PE SSCC/Capacitacion R/sesion_3/tarea")
-```
-
 ```{r}
 library(readxl)
 
-nac2017_j1 <- read_excel("data/nac2017_j1.xlsx")
-nac2017_j2 <- read_excel("data/nac2017_j2.xlsx")
-nac2017_j3 <- read_excel("data/nac2017_j3.xlsx")
+nac2017_j1 <- read_excel("nac2017_j1.xlsx")
+nac2017_j2 <- read_excel("nac2017_j2.xlsx")
+nac2017_j3 <- read_excel("nac2017_j3.xlsx")
 
-```
-
-
-```{r, eval = F, include=F}
-nac2017_j1 <- read_excel("C:/Users/Trabajo/OneDrive - Instituto Nacional de Estadisticas/PE SSCC/Capacitacion R/sesion_3/data/tarea/data/nac2017_j1.xlsx")
-nac2017_j2 <- read_excel("C:/Users/Trabajo/OneDrive - Instituto Nacional de Estadisticas/PE SSCC/Capacitacion R/sesion_3/data/tarea/data/nac2017_j2.xlsx")
-nac2017_j3 <- read_excel("C:/Users/Trabajo/OneDrive - Instituto Nacional de Estadisticas/PE SSCC/Capacitacion R/sesion_3/data/tarea/data/nac2017_j3.xlsx")
 ```
 
 Una forma sencilla de explorar los objetos es utilizar la función `glimpse()` de `tidyverse`. Si bien la primera intuición es abrir la base para verla como si fuera una hoja de cálculo, cuando se trata de bases voluminosas, esta acción puede tardar mucho tiempo o incluso hacer que tengamos que cerrar nuestra sesión de RStudio.

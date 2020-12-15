@@ -1,6 +1,6 @@
 # sesion_4
 
-Repositorio dedicado a la sesión 4 de la actividad de Capacitación en R y herramientas de productividad, en el marco de la fase 5 del Proyecto Estratégico Servicios Compartidos para la Producción Estadística.
+Repositorio dedicado a la sesión 4 de la actividad de Capacitación en R.
 
 Contenidos:
 

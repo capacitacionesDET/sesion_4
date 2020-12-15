@@ -1,5 +1,5 @@
 ---
-title: "Capacitación en R y herramientas de productividad"
+title: "Capacitación en R"
 subtitle: "Sesión 4"  
 author: 
 date: '`r Sys.Date()`'
@@ -23,13 +23,11 @@ class: center, middle
 <img src="imagenes/logo_portada2.png" width="200" />
 
 
-## Capacitación en R y herramientas de productividad
-
-## Proyecto Estratégico Servicios Compartidos para la Producción Estadística
+## Capacitación en R
 
 ## Procesamiento de bases de datos (3)
 
-### Noviembre 2020
+### Diciembre 2020
 
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = TRUE)
@@ -51,7 +49,7 @@ background-image: url("imagenes/fondo2.PNG")
 background-size: contain;
 background-position: 100% 0%
 
-# Sesión 3: Procesamiento de BBDD (3)
+# Sesión 4: Procesamiento de BBDD (3)
 
 --
 <br/>
@@ -136,23 +134,22 @@ La mayoría de las funciones para .pur[análisis] y .pur[transformación] de dat
 
 --
 
-`R` incluye en sus paquetes base una función multipropósito para unir datos llamada `merge()`.
+`R` incluye en sus paquetes base una función multipropósito para unir datos llamada `merge()`, además de `cbind()` y `rbind()`
 
 --
 
-.pur[Vamos a ignorar] `merge()` en esta ocasión y enfocarnos en algunas funciones de `dplyr` que .pur[tienen el mismo objetivo].
+.pur[Si bien no es lo ideal utilizar estas funciones, las revisaremos por su sencillez y por su carácter introductorio.]
+
+
+Posteriormente nos enfocaremos en algunas funciones de `dplyr` que tienen el mismo objetivo que `merge()`, `cbind()` y `rbind()`.
 
 --
 
-¿Por qué?
+Estos son los `joins` de `dplyr`, que ofrecen más control sobre el proceso, dado que existen distintas funciones para generar uniones *ad hoc* a nuestros requerimientos.
 
 --
 
-- Los `joins` de `dplyr` ofrecen más control sobre el proceso, dado que existen distintas funciones para generar uniones *ad hoc* a nuestros requerimientos.
-
---
-
-- Los `joins` mantienen el orden de las filas (no así necesariamente `merge()`)
+Además, los `joins` mantienen el orden de las filas (no así necesariamente `merge()`)
 
 ---
 
@@ -180,15 +177,22 @@ background-position: 100% 0%
 .medium-par[O esto...]
 
 ![](https://media0.giphy.com/media/P4TqKx6NHyLnO/giphy.gif?cid=3640f6095c91abd67a467174592b5512)
+
 ]
 
+
+---
+
+background-image: url("imagenes/fondo2.PNG")
+background-size: contain;
+background-position: 100% 0%
+
+# Unión de *data frames* con *r base*
+
 --
 
-Los `joins` son un set de funciones que son parte de `dplyr`.
 
---
 
-Y al igual que las funciones de `dplyr` que aprendimos previamente, comparten su .medium-par-red[gramática] y .medium-par-red[simpleza]. 
 
 ---
 
@@ -1306,7 +1310,7 @@ background-position: 100% 0%
 
 --
 
-En el archivo "nacimientos.rar" que se encuentra disponible en la carpeta **'data/tarea' en la sesion 4 de nuestro canal en Teams (Generación II)**, encontrarán las siguientes bases de datos:
+En el archivo "nacimientos.rar" que se encuentra disponible **[aquí](https://inechile-my.sharepoint.com/:u:/g/personal/nicolas_ratto_ine_cl/EeHIsLYPX7FGjXyLGV6tci8Blar-7Ol1WQ-qcm4ZgtKcEg?e=0jsmRt)**, encontrarán las siguientes bases de datos:
 
 --
 
@@ -1388,10 +1392,8 @@ class: center, middle
 <img src="imagenes/logo_portada2.png" width="200" />
 
 
-## Capacitación en R y herramientas de productividad
-
-## Proyecto Estratégico Servicios Compartidos para la Producción Estadística
+## Capacitación en R
 
 ## Procesamiento de bases de datos (3)
 
-### Noviembre 2020
+### Diciembre 2020
