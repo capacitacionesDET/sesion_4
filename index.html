@@ -533,7 +533,7 @@ names(guaguas_n)
 
 --
 
-La variable `nombre` que usaremos como lleva no tiene el mismo nombre en las bases.
+La variable `nombre` que usaremos como "llave" **no** tiene el mismo nombre en las bases.
 
 --
 
@@ -1218,12 +1218,12 @@ Y con números se pueden hacer muchas cosas: **operaciones matemáticas**, **gr�
 
 ```r
 # Pueden reemplazar esta fecha por sus cumpleaños
-mi_cumple &lt;- ("1985-06-12")
+mi_cumple &lt;- ("1993-09-30")
 str(mi_cumple)
 ```
 
 ```
-##  chr "1985-06-12"
+##  chr "1993-09-30"
 ```
 
 --
@@ -1235,7 +1235,7 @@ str(mi_cumple)
 ```
 
 ```
-##  Date[1:1], format: "1985-06-12"
+##  Date[1:1], format: "1993-09-30"
 ```
 
 --
@@ -1246,7 +1246,7 @@ as.numeric(mi_cumple)
 ```
 
 ```
-## [1] 5641
+## [1] 8673
 ```
 
 --
@@ -1282,35 +1282,16 @@ Es la distancia desde un momento **escogido de manera arbitraria**: el .medium-p
 
 
 ```r
-mi_cumple &lt;- as.Date("12-06-1985"); str(mi_cumple) 
+mi_cumple &lt;- as.Date("30-09-1993"); str(mi_cumple) 
 ```
 
 ```
-##  Date[1:1], format: "0012-06-19"
+##  Date[1:1], format: "0030-09-19"
 ```
 
 --
 
 .pur[No soluciona el problema del ordenamiento]. Requiere asistentes para hacerlo. 
-
---
-
-
-```r
-library(anytime)
-```
-
-```
-## Warning: package 'anytime' was built under R version 3.6.3
-```
-
-```r
-mi_cumple &lt;- as.Date(anydate("12-06-1985")); str(mi_cumple) 
-```
-
-```
-##  Date[1:1], format: "1985-12-06"
-```
 
 
 ---
@@ -1355,7 +1336,7 @@ Sys.time() # el momento exacto, con fecha, horas, minutos y segundos
 ```
 
 ```
-## [1] "2020-12-17 11:31:43 -03"
+## [1] "2020-12-17 12:49:27 -03"
 ```
 
 ---
@@ -1364,7 +1345,7 @@ background-image: url("imagenes/fondo2.PNG")
 background-size: contain;
 background-position: 100% 0%
 
-# Manejo de fechas con `lubruidate`
+# Manejo de fechas con `lubridate`
 
 --
 
@@ -1394,7 +1375,7 @@ now()
 ```
 
 ```
-## [1] "2020-12-17 11:31:43 -03"
+## [1] "2020-12-17 12:49:27 -03"
 ```
 
 --
@@ -1415,7 +1396,7 @@ background-image: url("imagenes/fondo2.PNG")
 background-size: contain;
 background-position: 100% 0%
 
-# Manejo de fechas con `lubruidate`
+# Manejo de fechas con `lubridate`
 
 --
 
@@ -1437,28 +1418,28 @@ background-position: 100% 0%
 .pull-right[
 
 ```r
-ymd("1985-06-12")
+ymd("1993-09-30")
 ```
 
 ```
-## [1] "1985-06-12"
-```
-
-```r
-# No asimila bien el mes en español
-mdy("Jun 12, 1985")
-```
-
-```
-## [1] "1985-06-12"
+## [1] "1993-09-30"
 ```
 
 ```r
-dmy("12/jun/1985")
+## No asimila bien el mes en español
+mdy("Sep 30, 1993")
 ```
 
 ```
-## [1] "1985-06-12"
+## [1] "1993-09-30"
+```
+
+```r
+dmy("30/sep/1993")
+```
+
+```
+## [1] "1993-09-30"
 ```
 
 ]
@@ -1631,12 +1612,12 @@ Así como podemos componer una fecha, también podemos descomponerla.
 
 
 ```r
-mi_cumple &lt;- dmy("12-06-1985")
+mi_cumple &lt;- dmy("30-09-1993")
 year(mi_cumple)
 ```
 
 ```
-## [1] 1985
+## [1] 1993
 ```
 
 --
@@ -1647,7 +1628,7 @@ month(mi_cumple, label = T) # con label se pide la etiqueta
 ```
 
 ```
-## [1] jun
+## [1] sept
 ## 12 Levels: ene &lt; feb &lt; mar &lt; abr &lt; may &lt; jun &lt; jul &lt; ago &lt; sept &lt; ... &lt; dic
 ```
 
@@ -1659,18 +1640,19 @@ mday(mi_cumple)
 ```
 
 ```
-## [1] 12
+## [1] 30
 ```
 
 --
 
 
 ```r
-wday(mi_cumple) # considera que el día 1 es el domingo
+wday(mi_cumple, label = T) # considera que el día 1 es el domingo
 ```
 
 ```
-## [1] 4
+## [1] jue
+## Levels: dom &lt; lun &lt; mar &lt; mié &lt; jue &lt; vie &lt; sáb
 ```
 
 ---
@@ -1687,11 +1669,11 @@ Por ejemplo, pueden saber .pur[cuántos días de vida tienen].
 
 
 ```r
-today() - ymd("1985-06-12") 
+today() - ymd("1993-09-30") 
 ```
 
 ```
-## Time difference of 12972 days
+## Time difference of 9940 days
 ```
 
 --
@@ -1909,7 +1891,7 @@ La variable "fecha_nac" refiere a la .pur[fecha de nacimiento] de un nacido dura
 
 --
 
-.center[.medium-par[Para resolver el punto 3 tendrán que googlear un poco 🕵️]]
+.center[.medium-par[Para resolver el punto 3 usen ` %&gt;% summarise(min(),max(),media(),median())`️]]
 
 ---
 

@@ -448,7 +448,7 @@ names(guaguas_n)
 
 --
 
-La variable `nombre` que usaremos como lleva no tiene el mismo nombre en las bases.
+La variable `nombre` que usaremos como "llave" **no** tiene el mismo nombre en las bases.
 
 --
 
@@ -1043,7 +1043,7 @@ Y con números se pueden hacer muchas cosas: **operaciones matemáticas**, **gr�
 
 ```{r}
 # Pueden reemplazar esta fecha por sus cumpleaños
-mi_cumple <- ("1985-06-12")
+mi_cumple <- ("1993-09-30")
 str(mi_cumple)
 ```
 
@@ -1087,19 +1087,12 @@ Es la distancia desde un momento **escogido de manera arbitraria**: el .medium-p
 --
 
 ```{r}
-mi_cumple <- as.Date("12-06-1985"); str(mi_cumple) 
+mi_cumple <- as.Date("30-09-1993"); str(mi_cumple) 
 ```
 
 --
 
 .pur[No soluciona el problema del ordenamiento]. Requiere asistentes para hacerlo. 
-
---
-
-```{r}
-library(anytime)
-mi_cumple <- as.Date(anydate("12-06-1985")); str(mi_cumple) 
-```
 
 
 ---
@@ -1141,7 +1134,7 @@ background-image: url("imagenes/fondo2.PNG")
 background-size: contain;
 background-position: 100% 0%
 
-# Manejo de fechas con `lubruidate`
+# Manejo de fechas con `lubridate`
 
 --
 
@@ -1173,7 +1166,7 @@ background-image: url("imagenes/fondo2.PNG")
 background-size: contain;
 background-position: 100% 0%
 
-# Manejo de fechas con `lubruidate`
+# Manejo de fechas con `lubridate`
 
 --
 
@@ -1194,10 +1187,10 @@ background-position: 100% 0%
 
 .pull-right[
 ```{r}
-ymd("1985-06-12")
-# No asimila bien el mes en español
-mdy("Jun 12, 1985")
-dmy("12/jun/1985")
+ymd("1993-09-30")
+## No asimila bien el mes en español
+mdy("Sep 30, 1993")
+dmy("30/sep/1993")
 ```
 
 ]
@@ -1324,7 +1317,7 @@ Así como podemos componer una fecha, también podemos descomponerla.
 --
 
 ```{r}
-mi_cumple <- dmy("12-06-1985")
+mi_cumple <- dmy("30-09-1993")
 year(mi_cumple)
 ```
 
@@ -1343,7 +1336,7 @@ mday(mi_cumple)
 --
 
 ```{r}
-wday(mi_cumple) # considera que el día 1 es el domingo
+wday(mi_cumple, label = T) # considera que el día 1 es el domingo
 ```
 
 ---
@@ -1359,7 +1352,7 @@ background-position: 100% 0%
 Por ejemplo, pueden saber .pur[cuántos días de vida tienen]. 
 
 ```{r}
-today() - ymd("1985-06-12") 
+today() - ymd("1993-09-30") 
 ```
 
 --
@@ -1526,7 +1519,7 @@ La variable "fecha_nac" refiere a la .pur[fecha de nacimiento] de un nacido dura
 
 --
 
-.center[.medium-par[Para resolver el punto 3 tendrán que googlear un poco 🕵️]]
+.center[.medium-par[Para resolver el punto 3 usen ` %>% summarise(min(),max(),media(),median())`️]]
 
 ---
 

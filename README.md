@@ -7,3 +7,7 @@ Contenidos:
 - Unión de bases de datos (joins, binds)📌
 
 - Manejo de variables de tiempo (fechas) 📆
+
+### Bases de datos utilizadas
+
+> [nac 2017](https://github.com/nicolasrattor/sesion_4/raw/main/data/nac_2017.xlsx)
