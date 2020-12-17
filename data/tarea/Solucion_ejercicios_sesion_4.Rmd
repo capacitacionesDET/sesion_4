@@ -1,7 +1,7 @@
 ---
-title: "Solución ejercicios - Sesión 3"
-subtitle: "Capacitación en R y herramientas de productividad"
-author: "PE Servicios Compartidos para la Producción Estadística"
+title: "Solución ejercicios - Sesión 4"
+subtitle: "Capacitación en R"
+author: "Capacitadores DET, en base a PE SCPE"
 output: pdf_document
 header-includes:
 - \usepackage[fontsize=12pt]{scrextend}
@@ -11,7 +11,7 @@ header-includes:
 knitr::opts_chunk$set(echo = TRUE, warning = F, message = F)
 ```
 
-# Solución ejercicios - Sesión 3
+# Solución ejercicios - Sesión 4
 
 En primer lugar, deben descomprimir el archivo "nacimientos.rar" que se encuentra disponible en la carpeta 'data/tarea' en la sesion 3 de nuestro canal en Teams (Generación I). Encontrarán los siguientes archivos Excel:
 
