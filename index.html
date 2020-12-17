@@ -4,7 +4,7 @@
     <title>Capacitación en R</title>
     <meta charset="utf-8" />
     <meta name="author" content="" />
-    <meta name="date" content="2020-12-15" />
+    <meta name="date" content="2020-12-17" />
     <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
   </head>
   <body>
@@ -134,9 +134,6 @@ Posteriormente nos enfocaremos en algunas funciones de `dplyr` que tienen el mis
 
 Estos son los `joins` de `dplyr`, que ofrecen más control sobre el proceso, dado que existen distintas funciones para generar uniones *ad hoc* a nuestros requerimientos.
 
---
-
-Además, los `joins` mantienen el orden de las filas (no así necesariamente `merge()`)
 
 ---
 
@@ -168,6 +165,7 @@ background-position: 100% 0%
 ]
 
 
+
 ---
 
 background-image: url("imagenes/fondo2.PNG")
@@ -178,6 +176,411 @@ background-position: 100% 0%
 
 --
 
+`cbind` o `rbind()` combina una secuencia de argumentos de un vector, una matriz o una data frame, por columnas o por filas.
+
+--
+
+Para que funcione combinar por columnas, las data frame deben tener el mismo número de filas.
+
+--
+
+![](imagenes/cbind.png)
+
+
+---
+
+background-image: url("imagenes/fondo2.PNG")
+background-size: contain;
+background-position: 100% 0%
+
+# Unión de *data frames* con *r base*
+
+Para que funcione combinar por filas, las data frame deben tener el mismo número y nombre de columnas.
+
+--
+
+![](imagenes/rbind.png)
+
+--
+
+Para realizar estas combinaciones no se requieren variables llaves.
+
+--
+
+Las funciones tienen limitaciones. Si no coinciden las dimensiones de los objetos a combinar tendremos problemas. 
+
+
+---
+
+background-image: url("imagenes/fondo2.PNG")
+background-size: contain;
+background-position: 100% 0%
+
+# Unión de *data frames* con *r base*
+
+--
+
+Creemos una base con los asistentes y relatores del curso a partir de tres data:
+
+```r
+library(tidyverse)
+```
+
+--
+
+
+```r
+det_asistentes &lt;- tibble(nombres = c("Diana", "Pablo", "Rodrigo", "Pamela",
+                               "Aylin", "Magdalena", "Vicente", "Georgina",
+                               "Randy", "David", "Loreto", "Carla", "Oscar",
+                               "Francisco","Daniel","Joaquín"),
+                         sub = c("SECS","SEIT","SECS","SECS","SECS","SECS","SEIT",
+                                 "SECS","SECS","No aplica","SEIT","SEET","SEET","SEIT","SEET",
+                                 "SEIT"))
+
+tareas_asistentes &lt;- tibble(E1	=c(1,	1	,1	,1	,0	,1	,0	,0	,1	,1,	0	,0	,1	,0	,0,	1),
+                            E2	=c(1,	1	,1	,0	,1	,1	,0	,0	,1	,0,	0	,0	,0	,1	,0,	0),
+                            E3	=c(0,	0	,0	,0	,1	,0	,0	,0	,1	,0,	0	,0	,0	,0	,0,	0))
+
+relatores&lt;- tibble(nombres = c("Nicolás","Gonzalo"),
+                   sub=c("SEIT","SEIT"),
+                   E1=85,
+                   E2=85,
+                   E3=85)
+```
+
+---
+
+background-image: url("imagenes/fondo2.PNG")
+background-size: contain;
+background-position: 100% 0%
+
+# Unión de *data frames* con *r base*
+
+--
+
+
+```r
+head(det_asistentes,4)
+```
+
+```
+## # A tibble: 4 x 2
+##   nombres sub  
+##   &lt;chr&gt;   &lt;chr&gt;
+## 1 Diana   SECS 
+## 2 Pablo   SEIT 
+## 3 Rodrigo SECS 
+## 4 Pamela  SECS
+```
+
+```r
+head(tareas_asistentes,3)
+```
+
+```
+## # A tibble: 3 x 3
+##      E1    E2    E3
+##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1     1     1     0
+## 2     1     1     0
+## 3     1     1     0
+```
+
+```r
+head(relatores)
+```
+
+```
+## # A tibble: 2 x 5
+##   nombres sub      E1    E2    E3
+##   &lt;chr&gt;   &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1 Nicolás SEIT     85    85    85
+## 2 Gonzalo SEIT     85    85    85
+```
+
+---
+
+background-image: url("imagenes/fondo2.PNG")
+background-size: contain;
+background-position: 100% 0%
+
+# Unión de *data frames* con *r base*
+
+
+```r
+det&lt;-cbind(det_asistentes,tareas_asistentes)
+head(det,4)
+```
+
+```
+##   nombres  sub E1 E2 E3
+## 1   Diana SECS  1  1  0
+## 2   Pablo SEIT  1  1  0
+## 3 Rodrigo SECS  1  1  0
+## 4  Pamela SECS  1  0  0
+```
+
+```r
+dim(det)
+```
+
+```
+## [1] 16  5
+```
+
+--
+
+¡Funcionó pegar las columnas de las dos bases!
+
+--
+
+¿Cómo combinar la base de los asistentes con los de los relatores?
+
+--
+
+
+```r
+det&lt;-rbind(det,relatores)
+dim(det)
+```
+
+```
+## [1] 18  5
+```
+
+
+
+---
+
+background-image: url("imagenes/fondo2.PNG")
+background-size: contain;
+background-position: 100% 0%
+
+# Unión de *data frames* con *r base*
+
+--
+
+Complejizemos las combinaciones de bases de datos...
+
+--
+
+Carguemos ahora la base `guaguas`. Creemos una base anidada por nombres.
+
+--
+
+
+```r
+library(guaguas)
+guaguas_n&lt;-guaguas %&gt;% group_by(nombre) %&gt;% summarise(total=sum(n)) %&gt;% as.data.frame()
+guaguas_sexo&lt;-guaguas %&gt;% group_by(nombre) %&gt;% slice(1) %&gt;% select(nombre,sexo) %&gt;% as.data.frame()
+
+head(guaguas_n,3)
+```
+
+```
+##   nombre total
+## 1  Aaron  6281
+## 2  Aarón  1673
+## 3   Abby   313
+```
+
+```r
+head(guaguas_sexo,3)
+```
+
+```
+##   nombre sexo
+## 1  Aaron    M
+## 2  Aarón    M
+## 3   Abby    F
+```
+
+---
+
+background-image: url("imagenes/fondo2.PNG")
+background-size: contain;
+background-position: 100% 0%
+
+# Unión de *data frames* con *r base*
+
+--
+
+Veamos las dimensiones de las dos bases
+
+--
+
+
+```r
+dim(guaguas_n)
+```
+
+```
+## [1] 2871    2
+```
+
+```r
+dim(guaguas_sexo)
+```
+
+```
+## [1] 2871    2
+```
+
+--
+
+Se pueden combinar fácilmente... ¿o no? 
+
+
+```r
+guaguas_agrup&lt;-cbind(guaguas_sexo,guaguas_n)
+head(guaguas_agrup,4)
+```
+
+```
+##   nombre sexo nombre total
+## 1  Aaron    M  Aaron  6281
+## 2  Aarón    M  Aarón  1673
+## 3   Abby    F   Abby   313
+## 4 Abdiel    M Abdiel   519
+```
+--
+
+El nombre está repetido...
+
+---
+
+background-image: url("imagenes/fondo2.PNG")
+background-size: contain;
+background-position: 100% 0%
+
+# Unión de *data frames* con *r base*
+
+--
+
+Una forma de solucionarlo es considerando a `nombre` como una variable llave.
+
+--
+
+La función `merge()` nos permitirá solucionar esto. 
+
+--
+
+Además, la función merge nos permitirá combinar bases de datos con distintas dimensiones.
+
+--
+
+**¿Como funciona?**
+
+En su forma más simple: `merge(x , y , by= "llave")`
+
+.pur[De esta forma solo se conservan aquellas filas que hacen *match*]
+
+--
+
+Así se conservan todas las filas: `merge(x , y , by= "llave", all=TRUE)`
+
+--
+
+y así la base que nosotros/as elijamos: 
+
+
+`merge(x , y , by= "llave", all.x=TRUE)` .
+
+--
+
+o 
+
+--
+
+`merge(x , y , by= "llave", all.y=TRUE)`.
+
+---
+
+background-image: url("imagenes/fondo2.PNG")
+background-size: contain;
+background-position: 100% 0%
+
+# Unión de *data frames* con *r base*
+
+--
+
+
+
+
+--
+
+¿Como saber cuál nombre de los asistentes y relatores del curso es el con más inscripciones según el registro de `guaguas`?
+
+--
+
+
+```r
+names(det)
+```
+
+```
+## [1] "nombres" "sub"     "E1"      "E2"      "E3"
+```
+
+```r
+names(guaguas_n)
+```
+
+```
+## [1] "nombre" "total"
+```
+
+--
+
+La variable `nombre` que usaremos como lleva no tiene el mismo nombre en las bases.
+
+--
+
+
+```r
+det&lt;-det %&gt;% rename(nombre=nombres)
+```
+
+--
+
+
+```r
+det&lt;-merge(det,guaguas_n,by="nombre",all.x = TRUE)
+
+det %&gt;% arrange(desc(total)) %&gt;% head(3)
+```
+
+```
+##      nombre  sub E1 E2 E3  total
+## 1 Francisco SEIT  0  1  0 181425
+## 2   Rodrigo SECS  1  1  0 123344
+## 3    Daniel SEET  0  0  0 108879
+```
+
+
+
+---
+
+background-image: url("imagenes/fondo2.PNG")
+background-size: contain;
+background-position: 100% 0%
+
+# Unión de *data frames* con *r base*
+
+Distintas formas para combinar muchas bases de datos a la vez (les servirá a futuro):
+
+--
+
+Sin llave: `Reduce(function(x, y) merge(x, y, all=TRUE), list(df1, df2, df3))`
+
+--
+
+Con llave: `Reduce(function(x,y) merge(x, y, by = "key"), list(df1,df2,df3))`
+
+--
+
+Ahora vamos con `dplyr`...
 
 
 
@@ -944,7 +1347,7 @@ Sys.Date() # La fecha de hoy
 ```
 
 ```
-## [1] "2020-12-15"
+## [1] "2020-12-17"
 ```
 
 ```r
@@ -952,7 +1355,7 @@ Sys.time() # el momento exacto, con fecha, horas, minutos y segundos
 ```
 
 ```
-## [1] "2020-12-15 13:16:01 -03"
+## [1] "2020-12-17 11:31:43 -03"
 ```
 
 ---
@@ -983,7 +1386,7 @@ today()
 ```
 
 ```
-## [1] "2020-12-15"
+## [1] "2020-12-17"
 ```
 
 ```r
@@ -991,7 +1394,7 @@ now()
 ```
 
 ```
-## [1] "2020-12-15 13:16:01 -03"
+## [1] "2020-12-17 11:31:43 -03"
 ```
 
 --
@@ -1288,7 +1691,7 @@ today() - ymd("1985-06-12")
 ```
 
 ```
-## Time difference of 12970 days
+## Time difference of 12972 days
 ```
 
 --
@@ -1314,7 +1717,7 @@ today() + years(1) + months(1)
 ```
 
 ```
-## [1] "2022-01-15"
+## [1] "2022-01-17"
 ```
 
 ---
